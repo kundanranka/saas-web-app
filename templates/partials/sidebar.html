@@ -1,0 +1,69 @@
+{% load static %}
+<style>
+    .nav-bottom{
+        justify-content: flex-end;
+    }
+    .nav{
+        height: 50%;
+    }
+</style>
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+        <li class="nav-item active"><a class="nav-link" href="{% url 'customers:home' %}"> <img class="menu-icon"
+                    src="{% static 'images/menu_icons/01.png' %}" alt="menu icon"> <span
+                    class="menu-title">Dashboard</span></a></li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#page-layouts" aria-expanded="false"
+                aria-controls="page-layouts"> <img class="menu-icon" src="{% static 'images/menu_icons/02.png' %}"
+                    alt="menu icon"> <span class="menu-title">Clients</span><i class="menu-arrow"></i></a>
+            <div class="collapse" id="page-layouts">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'customers:clients_list' %}">Clients List</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#apps-dropdown" aria-expanded="false"
+                aria-controls="apps-dropdown"> <img class="menu-icon" src="{% static 'images/menu_icons/09.png' %}"
+                    alt="menu icon"> <span class="menu-title">Suppliers</span><i class="menu-arrow"></i></a>
+            <div class="collapse" id="apps-dropdown">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'customers:suppliers_list' %}">Suppliers
+                            List</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#sidebar-dropdown-3" aria-expanded="false"
+                aria-controls="sidebar-dropdown-3"> <img class="menu-icon" src="{% static 'images/menu_icons/05.png' %}"
+                    alt="menu icon"> <span class="menu-title">Roles/Permissions</span><i class="menu-arrow"></i></a>
+            <div class="collapse" id="sidebar-dropdown-3">
+                <ul class="nav flex-column sub-menu">
+                    {% if user.is_superuser %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'manage_roles' %}">Manage Roles</a></li>
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'user_permissions' %}">View Your Permissions</a></li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'customers:team_members' %}">
+                <img class="menu-icon" src="{% static 'images/menu_icons/14.png' %}" alt="menu icon">
+                <span class="menu-title">Team Members</span><i class="menu-arrow"></i>
+            </a>
+        </li>
+    </ul>
+
+    <ul class="nav nav-bottom p-0">
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'customers:settings' %}"> 
+                <img class="menu-icon" src="{% static 'images/menu_icons/05.png' %}" alt="menu icon">
+                <span class="menu-title">Settings</span>
+            </a>
+        </li>
+    </ul>
+</nav>
