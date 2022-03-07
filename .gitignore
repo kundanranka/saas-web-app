@@ -14,6 +14,5 @@ venv/
 
 /static-comp/
 
-*/migrations/
 
 .user.gitignore
