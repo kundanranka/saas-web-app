@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-(v$)%92l#mz)5^md71m*j9%!%0hun@yd_ywr-q@o+@@=vh_3$y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['infinityApp.pythonanywhere.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['Nudgeme.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -87,10 +87,10 @@ WSGI_APPLICATION = 'saas_web_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'infinityApp$infinityApp',
-        'USER': 'infinityApp',
+        'NAME': 'Nudgeme$default',
+        'USER': 'Nudgeme',
         'PASSWORD': 'Fiverr.123',
-        'HOST': 'infinityApp.mysql.pythonanywhere-services.com',   # Or an IP Address that your DB is hosted on
+        'HOST': 'Nudgeme.mysql.pythonanywhere-services.com',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
