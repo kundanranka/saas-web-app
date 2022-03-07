@@ -123,6 +123,13 @@ class User(AbstractUser):
         except:
             return None
     
+    @property
+    def get_employees(self):
+        try:
+            return self.company.employee.all()
+        except:
+            return None
+    
 class Profile(BaseModel['Profile']):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     token = models.CharField(max_length=150)

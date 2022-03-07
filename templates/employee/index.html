@@ -1,0 +1,193 @@
+{% extends "base.html" %} {% load static %} {% block ExtraCss %}
+<style>
+    #create-customer-model .profile-cont {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    #create-customer-model .profile-cont img {
+        border-radius: 50%;
+    }
+    
+    #create-customer-model .profile-cont .customer-type-cont {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    #create-customer-model .profile-cont .input-cont {
+        margin: 5px;
+        padding: 3px 8px;
+        border-radius: 35px;
+        background-color: #fff;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    
+    #create-customer-model .profile-cont .input-cont input {
+        margin-left: 5px !important;
+    }
+    
+    #create-customer-model .profile-cont .input-cont .label {
+        margin: 0 !important;
+        font-size: small;
+    }
+    
+    .modal-header {
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
+        padding: 10px !important;
+        align-items: center !important;
+    }
+</style>
+{% endblock ExtraCss %} {% block content %}
+<div class="row">
+    <div class="col">
+        <h2>Employee</h2>
+    </div>
+    <div class="col text-right">
+        <a href="/employee/new">
+            <button type="button" class="btn btn-success">
+                New Employee
+            </button>
+        </a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Employee List</h4>
+        <div class="row">
+            <div class="col-12">
+                <div id="order-listing_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                    <div class="row">
+                        {% comment %}
+                        <div class="col-sm-12 col-md-6">
+                            <div id="order-listing_filter" class="dataTables_filter float-right"><label><input
+                                        type="search"
+                                        class="form-control"
+                                        placeholder="Search"
+                                        aria-controls="order-listing"></label>
+                            </div>
+                        </div> {% endcomment %}
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="order-listing" class="table dataTable no-footer" role="grid" aria-describedby="order-listing_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Order #: activate to sort column ascending" style="width: 82.1px;">Employee ID
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Purchased On: activate to sort column ascending" style="width: 140.988px;">First Name
+                                        </th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Customer: activate to sort column descending" aria-sort="ascending" style="width: 102.387px;">Last Name
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Ship to: activate to sort column ascending" style="width: 79.0125px;">Hire Date
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Base Price: activate to sort column ascending" style="width: 110.562px;">Department
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="order-listing" rowspan="1" colspan="1" aria-label="Purchased Price: activate to sort column ascending" style="width: 160.3px;">Pay Frequency
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for employee in employees %}
+                                    <tr role="row" class="odd">
+                                        <td class="">{{ employee.employeeid }}</td>
+                                        <td class="">{{ employee.firstname }}</td>
+                                        <td class="sorting_1">{{ employee.lastname }}</td>
+                                        <td>{{ employee.startdate }}</td>
+                                        <td>{{ employee.branch }}</td>
+                                        <td>{{ employee.payfrequency }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %} {% block ExtraJs %} {% comment %}
+<script>
+    // data-dismiss="modal" aria-label="Close"
+    const buttons = document.querySelectorAll('[data-bs-toggle="modal"]');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-target')
+            let target = document.querySelector(`${targetId}`)
+            target.classList.toggle('hidden', false)
+        })
+    })
+</script> {% endcomment %}
+
+<script src="{% static 'app/customers.js' %}"></script>
+<script>
+    function submitForm(formId) {
+        var form = document.getElementById(formId);
+        if (form.checkValidity())
+            form.submit();
+        else
+            form.reportValidity();
+    }
+</script>
+
+<script>
+    // var datalists = document.querySelectorAll("datalist");
+    // datalists.forEach(list=>{
+    //     const listId = list.getAttribute('id')
+    //     const input = document.querySelector(`input[list='${listId}']`)
+    //     input.addEventListener('change', ()=>{
+    //         const value = input.value
+    //         const storageInputName = input.getAttribute('data-store-in')
+    //         var entityValue = document.querySelector(`#${listId} option[value='${value}']`).getAttribute("data-value");
+    //         document.querySelector(`input[name='${storageInputName}']`).value = entityValue
+    //     })
+    // })
+
+    // Delete
+    // function customeTypeHandler(elem){
+    //     var individualForm = document.getElementById("individual-form");
+    //     var clientForm = document.getElementById("client-form");
+    //     if (elem.value == "individual" && elem.value == "client"){
+    //         individualForm.classList.toggle('hidden', false)
+    //     } else {
+    //         clientForm.classList.toggle('hidden', true)
+    //     }
+    // }
+    // Delete
+
+    //  function customerTypeHandler(elem){
+    //
+    //   var individualForm = document.getElementById("individual-form");
+    //   var clientForm = document.getElementById("client-form");
+    //    if (elem.value == "client"){
+    //        clientForm.classList.toggle('hidden', false)
+    //     } else {
+    //        clientForm.classList.toggle('hidden', true)
+    //     }
+    //    if (elem.value == "individual" && "client"){
+    //         individualForm.classList.toggle('hidden', false)
+    //     }
+    //     else {
+    //         individualForm.classList.toggle('hidden', true)
+    //   }
+    //  }
+    // function customerTypeHandler(elem){
+    //     var clientForm = document.getElementById("client-form");
+    //     if (elem.value == "client"){
+    //         clientForm.classList.toggle('hidden', false)
+    //     } else {
+    //         clientForm.classList.toggle('hidden', true)
+    //     }
+    // }
+
+    // function submitForm(formId){
+    //     var form = document.getElementById(formId);
+    //     form.submit()
+    // }
+</script>
+{% endblock ExtraJs %}

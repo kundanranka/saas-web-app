@@ -1,0 +1,351 @@
+{% extends "base.html" %} {% block content %}
+
+<h3>New Employee</h3>
+<form method="POST" class="mt-4" action="/employee/new">
+    {% csrf_token %}
+    <input type="hidden" name="company" value="{{ company }}">
+    <div class="card">
+        <div class="card-body">
+            <h4>Personal Details</h4>
+            <br>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Employee Id</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="text" name="employeeid" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>First Name</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="text" name="firstname" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Last Name</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="text" name="lastname" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Date Of Birth</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="date" name="dateofbirth" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>ID Number</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="text" name="idnumber" class="form-control" pattern="[0-9]{6,13}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Mobile Number</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="tel" name="mobilenumber" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Email</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="email" name="email" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row mt-2">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Category</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <select name="category" class="form-control">
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Credit Limit</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="text" name="credit_limit" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Opening Balance</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="text" name="opening_balance" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>VAT Reference</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="text" name="vat_reference" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Opening Balance at</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="date" name="opening_balance_as_at" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Auto Allocate Payments to Old Invoices</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="checkbox" name="auto_allocate_payments_to_old_invoices">
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="card mt-2">
+        <div class="card-body">
+            <h4>Pay Details</h4><br>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Start Date</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="date" name="startdate" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Branch / Department</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <select name="branch" id="branch" class="form-control">
+                                <option hidden>Select Branch</option>
+                                {% for branch in request.user.company.get_active_branches %}
+                                    <option value="{{ branch.id }}">{{ branch.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Pay Frequency</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <select name="payfrequency" class="form-control">
+                                <option value="W">Weekly</option>
+                                <option value="B">Bi-Weekly</option>
+                                <option value="M">Monthly</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Pay Type</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <select name="paytype" class="form-control" onchange="changePayType(this)">
+                                <option hidden>Pay Type</option>
+                                <option value="S">Salary</option>
+                                <option value="H">Hourly</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="salary">
+                <!-- <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Pay Day</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="text" name="payrollnumber" class="form-control">
+                        </div>
+                    </div>
+                </div> -->
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Salary Amount</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="number" step="1" name="salaryamount" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row hourly">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Weekday Rate</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="number" step="0.1" name="weekdayrate" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Saturday Rate</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="number" step="0.1" name="saturdayrate" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row hourly">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Sunday Rate</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="number" step="0.1" name="sundayrate" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Public Holiday Rate</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <input type="number" step="0.1" name="publicholidayrate" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <h4>Nudge</h4><br>
+            <div class="row mt-3">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-12 col-sm-12">
+                            <h5>Percentage of Pay</h5>
+                            <input type="number" step="1" name="percentofpay" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-12 col-sm-12">
+                            <h5>Maximum Amount</h5>
+                            <input type="number" step="0.1" name="maximumamount" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-12 col-sm-12">
+                            <h5>Cut off date</h5>
+                            <input type="date" name="cutoffdate" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Save">
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    window.onload = function() {
+        $('#salary').hide();
+        $('.hourly').hide();
+    }
+
+    function changePayType(paytype) {
+        var type = paytype.value;
+        if (type == 'S') {
+            $('#salary').show();
+            $('.hourly').hide();
+        } else {
+            $('#salary').hide();
+            $('.hourly').show();
+        }
+    }
+</script>
+{% endblock content %}

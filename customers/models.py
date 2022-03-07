@@ -7,6 +7,13 @@ class Company(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def get_active_branches(self):
+        try:
+            return self.departments.filter(isActive=True)
+        except:
+            return None
+
 
 class Customer(models.Model):
 
@@ -229,3 +236,54 @@ class Note(models.Model):
 
     title = models.CharField(max_length=255)
     text = models.TextField()
+
+
+class Department(models.Model):
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="departments")
+    name = models.CharField(max_length=255)
+    isActive = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.name}"
+    
+    @property
+    def get_employees(self):
+        try:
+            return self.company.employee.filter(branch=self)
+        except:
+            return None
+
+class Employee(models.Model):
+    PAY_TYPES = (
+        ('S', 'Salary'),
+        ('H', 'Hourly'),
+    )
+    PAY_FREQUENCIES = (
+        ('W', 'Weekly'),
+        ('B', 'Bi-Weekly'),
+        ('M', 'Monthly'),
+    )
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="employee")
+    employeeid = models.CharField(max_length=255,primary_key=True)
+    firstname = models.CharField(max_length=255)
+    lastname = models.CharField(max_length=255)
+    dateofbirth = models.DateField()
+    idnumber = models.CharField(max_length=13)
+    mobilenumber = models.CharField(max_length=14)
+    email = models.EmailField(max_length=255)
+
+    startdate = models.DateField()
+    branch = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="department")
+    payfrequency = models.CharField(max_length=3,choices=PAY_FREQUENCIES)
+    paytype = models.CharField(max_length=3,choices=PAY_TYPES)
+    
+    salaryamount = models.IntegerField(null=True)
+    weekdayrate = models.FloatField(null=True)
+    saturdayrate = models.FloatField(null=True)
+    sundayrate = models.FloatField(null=True)
+    publicholidayrate = models.FloatField(null=True)
+
+    percentofpay = models.IntegerField()
+    maximumamount = models.IntegerField()
+    cutoffdate = models.DateField()
+
