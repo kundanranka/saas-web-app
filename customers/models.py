@@ -14,7 +14,6 @@ class Company(models.Model):
         except:
             return None
 
-
 class Customer(models.Model):
 
     CATEGORY_CHOICES = (
@@ -252,6 +251,28 @@ class Department(models.Model):
             return self.company.employee.filter(branch=self)
         except:
             return None
+    
+class Locations(models.Model):
+    STARTING_DAY = (
+        ('monday', 'Monday'),
+        ('tuesday', 'Tuesday'),
+        ('wednesday', 'Wednesday'),
+        ('thursday', 'Thursday'),
+        ('friday', 'Friday'),
+        ('saturday', 'Saturday'),
+        ('sunday', 'Sunday'),
+    )
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="locations")
+    name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    starting_day = models.CharField(max_length=255,choices=STARTING_DAY)
+    
+    @property
+    def get_employees(self):
+        try:
+            return self.company.employee.filter(location=self)
+        except:
+            return None
 
 class Employee(models.Model):
     PAY_TYPES = (
@@ -274,6 +295,7 @@ class Employee(models.Model):
 
     startdate = models.DateField()
     branch = models.ForeignKey(Department, on_delete=models.CASCADE, related_name="department")
+    location = models.ForeignKey(Locations, on_delete=models.CASCADE, related_name="location",default=None)
     payfrequency = models.CharField(max_length=3,choices=PAY_FREQUENCIES)
     paytype = models.CharField(max_length=3,choices=PAY_TYPES)
     

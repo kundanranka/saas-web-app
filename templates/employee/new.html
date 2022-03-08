@@ -179,13 +179,28 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="row form-group">
                         <div class="col-md-4 col-sm-4">
-                            <label>Branch / Department</label>
+                            <label>Department</label>
                         </div>
                         <div class="col-md-8 col-sm-8">
                             <select name="branch" id="branch" class="form-control">
                                 <option hidden>Select Branch</option>
                                 {% for branch in request.user.company.get_active_branches %}
                                     <option value="{{ branch.id }}">{{ branch.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="row form-group">
+                        <div class="col-md-4 col-sm-4">
+                            <label>Location</label>
+                        </div>
+                        <div class="col-md-8 col-sm-8">
+                            <select name="location" id="location" class="form-control">
+                                <option hidden>Select Location</option>
+                                {% for location in request.user.company.locations.all %}
+                                    <option value="{{ location.id }}">{{ location.name }}</option>
                                 {% endfor %}
                             </select>
                         </div>

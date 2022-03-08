@@ -8,12 +8,12 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string, get_template
-from .forms import CreateDepartmentForm, CreateEmployeeForm
+from .forms import CreateDepartmentForm, CreateEmployeeForm, CreateLocationForm
 from auth_email_verify.models import TeamMember
 
 from auth_email_verify.tokens import account_activation_token
 from django.conf import settings as _settings
-from .models import Client, Company, Customer, Department, Employee, ServiceItem, Supplier
+from .models import Client, Company, Customer, Department, Employee, Locations, ServiceItem, Supplier
 
 # Create your views here.
 
@@ -69,6 +69,18 @@ def department_list(request):
     form = CreateDepartmentForm()
     departments = Department.objects.filter(company=request.user.company)
     return render(request, 'department/index.html', {'departments':departments,'form':form})
+
+@login_required(login_url='signin')
+def location_list(request):
+    if request.method == 'POST':
+        form = CreateLocationForm(request.POST)
+        if form.is_valid():
+            department = form.save(commit=False)
+            department.company = request.user.company
+            department.save()
+    form = CreateLocationForm()
+    locations = Locations.objects.filter(company=request.user.company)
+    return render(request, 'locations/index.html', {'locations':locations,'form':form})
 
 @login_required(login_url='signin')
 def client_detail(request, id):

@@ -13,6 +13,6 @@ __pycache__/
 venv/
 
 /static-comp/
-
+migrations/
 
 .user.gitignore

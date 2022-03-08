@@ -1,6 +1,6 @@
 from xmlrpc.client import DateTime
 from django import forms
-from .models import Contact, Customer, Department, Employee, Note, ServiceItem, Supplier
+from .models import Contact, Customer, Department, Employee, Locations, Note, ServiceItem, Supplier
 
 
 # class UserForm(forms.ModelForm):
@@ -62,5 +62,11 @@ class CreateEmployeeForm(forms.ModelForm):
 class CreateDepartmentForm(forms.ModelForm):
     class Meta:        
         model = Department
+        fields = "__all__"
+        exclude = ['company']
+
+class CreateLocationForm(forms.ModelForm):
+    class Meta:
+        model = Locations
         fields = "__all__"
         exclude = ['company']
